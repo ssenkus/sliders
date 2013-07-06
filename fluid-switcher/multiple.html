@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>    
+        <style>
+            * { margin: 0; padding: 0;}
+            .sliders { margin: 100px auto; padding: 20px; height: 200px; width: 400px; background-color: #000;}
+            .menus { width: 100px; height: auto; background-color: #ffe; float: left;}
+            .menus ul { list-style-type: none; padding: 5px 0 5px 5px; margin: 20px 0px 20px 20px;}
+            .menus ul li { height: 20px; background-color: #fff; margin: 5px 0px;}
+            .contents { width: 100px; height: 160px; background-color: #fef; float: left; padding: 10px 20px 10px 0;}
+            .content-box { height: 150px; width: 100px; background-color: #f88; margin: 5px 5px 5px 0; display:none;}    
+            .selected { background-color: #f88!important; color: #bfa; }
+            .content-show {display:block;}
+        </style>
+    </head>
+
+    <body>
+        <div id="sliders">
+            <div>
+                <div class="menus">
+                    <ul>
+                        <li class="selecteds">0.sdf</li>
+                        <li>1.zxcv</li>
+                        <li>2.sdzxcv</li>
+                        <li>3.werrr</li>
+                        <li>4.aaa</li>
+                    </ul>
+                </div>
+                <div class="contents">
+                    <div class="content-box">BOX 0</div>
+                    <div class="content-box">BOX 1</div>
+                    <div class="content-box">BOX 2</div>
+                    <div class="content-box">BOX 3</div>
+                    <div class="content-box">BOX 4</div>
+
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li class="selected">0.sdf</li>
+                        <li>1.zxcv</li>
+                        <li>2.sdzxcv</li>
+                        <li>3.werrr</li>
+                        <li>4.aaa</li>
+                    </ul>
+                </div>
+                <div class="contents">
+                    <div class="content-box">BOX 0</div>
+                    <div class="content-box">BOX 1</div>
+                    <div class="content-box">BOX 2</div>
+                    <div class="content-box">BOX 3</div>
+                    <div class="content-box">BOX 4</div>
+
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li class="selecteds">0.sdf</li>
+                        <li>1.zxcv</li>
+                        <li>2.sdzxcv</li>
+                        <li>3.werrr</li>
+                        <li>4.aaa</li>
+                    </ul>
+                </div>
+                <div class="contents">
+                    <div class="content-box">BOX 0</div>
+                    <div class="content-box">BOX 1</div>
+                    <div class="content-box">BOX 2</div>
+                    <div class="content-box">BOX 3</div>
+                    <div class="content-box">BOX 4</div>
+
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li class="selecteds">0.sdf</li>
+                        <li>1.zxcv</li>
+                        <li>2.sdzxcv</li>
+                        <li>3.werrr</li>
+                        <li>4.aaa</li>
+                    </ul>
+                </div>
+                <div class="contents">
+                    <div class="content-box">BOX 0</div>
+                    <div class="content-box">BOX 1</div>
+                    <div class="content-box">BOX 2</div>
+                    <div class="content-box">BOX 3</div>
+                    <div class="content-box">BOX 4</div>
+
+                </div>
+                <div class="menus">
+                    <ul>
+                        <li class="selecteds">0.sdf</li>
+                        <li>1.zxcv</li>
+                        <li>2.sdzxcv</li>
+                        <li>3.werrr</li>
+                        <li>4.aaa</li>
+                    </ul>
+                </div>
+                <div class="contents">
+                    <div class="content-box">BOX 0</div>
+                    <div class="content-box">BOX 1</div>
+                    <div class="content-box">BOX 2</div>
+                    <div class="content-box">BOX 3</div>
+                    <div class="content-box">BOX 4</div>
+                </div>
+                <a href="index.html">Single</a>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                var selected = -1,
+                    timeOutSpeed = 100,
+                        menuItem = $('.menus ul li'),
+                        contentBox = $('.content-box'),
+                        lastMenuItem = menuItem.length - 1,
+                        deselected = menuItem.length - 1,
+                        rotater;
+
+                (function rotate() {
+
+                    deselected = selected++;
+                    contentBox.eq(deselected).hide(0, function() {
+                        contentBox.eq(selected).show(0);
+                    });
+                    menuItem.eq(selected).show(0, function() {
+                        $(this).addClass('selected').show(0);
+                    });
+                    menuItem.eq(deselected).removeClass('selected');
+                    if (selected === lastMenuItem) {
+                        deselected = selected;
+                        selected = -1;
+
+                    }
+                    setTimeout(rotate, timeOutSpeed);
+                })();
+
+
+
+            });
+        </script>
+    </body>
+</html>

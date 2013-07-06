@@ -6,11 +6,11 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>    
         <style>
             * { margin: 0; padding: 0;}
-            #slider { margin: 100px auto; padding: 20px; height: 200px; width: 900px; background-color: #000;}
-            #menu { width: 300px; height: auto; background-color: #ffe; float: left;}
+            #slider { margin: 100px auto; padding: 20px; height: 200px; width: 400px; background-color: #000;}
+            #menu { width: 100px; height: 180px; background-color: #ffe; float: left;}
             #menu ul { list-style-type: none; padding: 5px 0 5px 5px; margin: 20px 0px 20px 20px;}
             #menu ul li { height: 20px; background-color: #fff; margin: 5px 0px;}
-            #content { width: 300px; height: auto; background-color: #fef; float: left; padding: 10px 20px 10px 0;}
+            #content { width: 100px; height: 160px; background-color: #fef; float: left; padding: 10px 20px 10px 0;}
             .content-box { height: 150px; width: 100px; background-color: #f88; margin: 5px 5px 5px 0; display:none;}    
             .selected { background-color: #f88!important; color: #bfa; }
             .content-show {display:block;}
@@ -37,38 +37,38 @@
                     <div class="content-box">BOX 4</div>
 
                 </div>
-                <button id="btn-stop" type="button">Stop</button>
+                <a href="multiple.html">Multiple</a>
             </div>
         </div>
         <script>
             $(document).ready(function() {
                 var selected = -1,
-                    menuItem = $('#menu ul li'),
-                    contentBox = $('.content-box'),
-                    
-                    lastMenuItem = menuItem.length-1,
-                    deselected = menuItem.length-1,
-                    rotater;
-
-                      
-                rotater = setInterval(function(){
+                        menuItem = $('#menu ul li'),
+                        contentBox = $('.content-box'),
+                        lastMenuItem = menuItem.length - 1,
+                        deselected = menuItem.length - 1,
+rotator;
+                (function rotate() {
+                
                     deselected = selected++;
-                    contentBox.eq(selected).show();
-                    contentBox.eq(deselected).hide();
-                    menuItem.eq(selected).addClass('selected');
-                    menuItem.eq(deselected).removeClass('selected');                    
+                    contentBox.eq(deselected).slideUp(100, function() {
+                        contentBox.eq(selected).slideDown(200);
+                    });
+                    menuItem.eq(selected).slideUp(200, function() {
+                        $(this).addClass('selected').slideDown(100);
+                    });
+                    menuItem.eq(deselected).removeClass('selected');
                     if (selected === lastMenuItem) {
-                        deselected  = selected;
+                        deselected = selected;
                         selected = -1;
 
                     }
-                     
-                }, 300);
+
+                   rotator = setTimeout(rotate, 1000);
+                })();
                 
-                $('#btn-stop').on('click', function() {
-                    clearInterval(rotater);
-                    
-                });
+
+
             });
         </script>
     </body>
